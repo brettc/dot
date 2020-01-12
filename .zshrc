@@ -25,12 +25,13 @@ zplug "joshuarubin/zsh-homebrew"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-# zplug "ael-code/zsh-plugin-fasd"
+zplug "ael-code/zsh-plugin-fasd"
 zplug "esc/conda-zsh-completion"
+
 zplug "greymd/awless-zsh-completion"
 
 # zplug "plugins/common-aliases", from:oh-my-zsh
-zplug "jimmijj/zsh-syntax-highlighting"
+#zplug "jimmijj/zsh-syntax-highlighting"
 zplug "zdharma/fast-syntax-highlighting"
 # zplug "trapd00r/zsh-syntax-highlighting-filetypes"
 
@@ -61,23 +62,7 @@ export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 
 zplug load
 
-# ---------------------------------------------------------------------------
-# Bollocks
-#
-# precmd() {
-#     if [[ -n $PYENV_SHELL ]]; then
-#         local version
-#         version=${(@)$(pyenv version)[1]}
-#         if [[ $version = system ]]; then
-#             unset VIRTUAL_ENV
-#         else
-#             VIRTUAL_ENV=$version
-#         fi
-#     fi
-# }
-
-
-# unset CONDA_PROMPT_MODIFIER
+unset CONDA_PROMPT_MODIFIER
 
 precmd() {
     # if [[ -n $CONDA_DEFAULT_ENV ]]; then
@@ -97,9 +82,7 @@ stty start undef
 
 # source ~/.zshrc.local
 # [[ $SHLVL != "2" ]] && tmux new
-alias ls="ls --color"
-alias ll="ls -l --color"
-alias la="ls -a --color"
+####### alias ls="gls --color"
 #
 
 # Virtual envs
@@ -113,12 +96,38 @@ alias la="ls -a --color"
 # eval "$(pyenv virtualenv init -)"
 # pyenv virtualenvwrapper_lazy
 
+# conda activate base
 export PATH="$HOME/bin:$PATH"
-conda activate base
+export EDITOR=nvim
+alias dotgit='/usr/bin/git --git-dir=$HOME/.dotgit/ --work-tree=$HOME'
+
+
+# zprof
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/brett.calcott/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/brett.calcott/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/brett.calcott/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/brett.calcott/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+conda deactivate
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/brett.calcott/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/brett.calcott/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/brett.calcott/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/brett.calcott/google-cloud-sdk/completion.zsh.inc'; fi
+
 
 # ac Novel
 # ac RippedCasts
-# ac Galaxy
-
-# zprof
-alias config='/usr/bin/git --git-dir=/home/brett/.cfg/ --work-tree=/home/brett'
+ac Galaxy

@@ -1,4 +1,4 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 			  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -22,7 +22,6 @@ Plug 'ncm2/ncm2-jedi'
 Plug 'w0rp/ale'
 Plug 'ambv/black'
 Plug 'Raimondi/delimitMate'
-" call minpac#add('manasthakur/vim-commentor')
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -38,15 +37,23 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+
 Plug 'ludovicchabant/vim-gutentags'
 " call minpac#add('editorconfig/editorconfig-vim')
+"
+
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
+Plug 'lervag/vimtex'
 "
 Plug 'morhetz/gruvbox'
 Plug 'justinmk/vim-dirvish'
 Plug 'kristijanhusak/vim-dirvish-git'
 
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'andymass/vim-matchup'
+Plug 'andymass/vim-matchup'
 " call minpac#add('haya14busa/vim-asterisk')
 " call minpac#add('osyo-manga/vim-anzu')
 " call minpac#add('autozimu/LanguageClient-neovim', { 'do': '!bash install.sh' })
@@ -55,6 +62,9 @@ Plug 'christoomey/vim-tmux-navigator'
 "
 Plug 'Vimjas/vim-python-pep8-indent'
 
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+
 " Initialize plugin system
 call plug#end()
 
@@ -62,12 +72,13 @@ call plug#end()
 " ================ General Config ==================== {{{
 "
 "
-let g:python3_host_prog = '/home/brett/anaconda3/bin/python'
+let g:python3_host_prog = $HOME.'/anaconda3/bin/python'
 
 let g:loaded_netrwPlugin = 1                                                    "Do not load netrw so Dirvish can be autoloaded
 let g:loaded_matchit = 1                                                        "Do not load matchit, use matchup plugin
 
 let g:mapleader = ','                                                           "Change leader to a comma
+let g:maplocalleader = ','                                                           "Change leader to a comma
 
 
 let g:gruvbox_italic = 0                                                        "Enable italics in Gruvbox colorscheme
@@ -237,7 +248,7 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev Bd bd
-cnoreabbrev wrap set wrap
+" cnoreabbrev wrap set wrap
 cnoreabbrev nowrap set nowrap
 
 " }}}
@@ -344,7 +355,7 @@ endfunction
 " Map save to Ctrl + S
 map <c-s> :w<CR>
 imap <c-s> <C-o>:w<CR>
-nnoremap <Leader>s :w<CR>
+" nnoremap <Leader>s :w<CR>
 
 " Open vertical split
 nnoremap <Leader>v <C-w>v
@@ -453,6 +464,12 @@ nnoremap <Leader>R :ALEFix<CR>
 " Close all other buffers except current one
 nnoremap <Leader>db :silent w <BAR> :silent %bd <BAR> e#<CR>
 
+nmap <Leader>ss :SaveSession<space>
+nmap <Leader>so :OpenSession<space>
+
+let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
+
 " }}}
 " ================ Plugins setups ======================== {{{
 
@@ -478,6 +495,8 @@ let g:ale_sign_error = 'X'                                                      
 let g:ale_sign_warning = '!'                                                    "Lint warning sign
 
 let g:matchup_matchparen_status_offscreen = 0                                   "Do not show offscreen closing match in statusline
+
+
 
 " }}}
 " vim:foldenable:foldmethod=marker
