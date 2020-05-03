@@ -45,6 +45,8 @@ zplug "zdharma/fast-syntax-highlighting"
 # Coding
 zplug "voronkovich/gitignore.plugin.zsh"
 # zplug "davidparsson/zsh-pyenv-lazy"
+#
+zplug 'wfxr/forgit'
 
 # Prompt
 zplug "mafredri/zsh-async", from:github
@@ -53,6 +55,8 @@ zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 # GEOMETRY_PROMPT_SUFFIX="'\n'"
 # PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 # zplug "geometry-zsh/geometry"
+#
+zplug "darvid/zsh-poetry"
 
 # install any uninstalled plugins
 zplug check || zplug install
