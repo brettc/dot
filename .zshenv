@@ -4,7 +4,7 @@ path=(
   $path
 )
 
-. $HOME/anaconda3/etc/profile.d/conda.sh
+# . $HOME/anaconda3/etc/profile.d/conda.sh
 
 # if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 #   source "${VIRTUAL_ENV}/bin/activate"
